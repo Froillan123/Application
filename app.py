@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
-from dbhelper import create_user, get_user, init_db, print_users
+from dbhelper import create_user, get_user, init_db
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Change this to a random secret key
@@ -9,7 +9,7 @@ init_db()
 
 @app.route('/')
 def home():
-    return render_template('login.html')
+    return render_template('index.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -17,19 +17,14 @@ def login():
         username = request.form['username'].strip()  # Remove whitespace
         password = request.form['password'].strip()  # Remove whitespace
         
-        print(f"Attempting to log in with username: '{username}' and password: '{password}'")  # Debug: Log login attempt
-        
         user = get_user(username, password)
         if user:
             session['username'] = username
-            print(f"Login successful for user: {username}")  # Debug: Successful login
             return redirect(url_for('dashboard'))
         else:
             flash('Invalid credentials!')
-            print("Invalid credentials!")  # Debug: Invalid credentials
-            return redirect(url_for('home'))
+            return redirect(url_for('login'))
     
-    # Render the login form if it's a GET request
     return render_template('login.html')
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -38,23 +33,21 @@ def register():
         username = request.form['username'].strip()  # Remove whitespace
         password = request.form['password'].strip()  # Remove whitespace
         
-        print(f"Registering user with username: '{username}' and password: '{password}'")  # Debug: Log registration attempt
-        
         if create_user(username, password):
             flash('User registered successfully!')
-            print_users()  # Debugging: Print users after registration
-            return redirect(url_for('home'))
+            return redirect(url_for('login'))
         else:
-            flash('User already exists!')
-            print("User already exists!")  # Debug: User already exists
-            return redirect(url_for('home'))
-    return render_template('register.html')  # Render registration form if GET request
+            flash('Username already exists! Please choose another one.')
+            return redirect(url_for('register'))
+
+    return render_template('register.html')
+
 
 @app.route('/dashboard')
 def dashboard():
     if 'username' in session:
         return render_template('dashboard.html', username=session['username'])
-    return redirect(url_for('home'))
+    return redirect(url_for('login'))
 
 @app.route('/logout')
 def logout():

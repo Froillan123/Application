@@ -1,0 +1,3 @@
+Flask==2.2.2          # Flask framework for building web applications
+Flask-SQLAlchemy==2.5.1  # Extension for integrating SQLAlchemy with Flask
+Werkzeug==2.2.2      # WSGI utility library for Flask (comes with Flask but can specify for version control)
