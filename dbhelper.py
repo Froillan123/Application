@@ -3,6 +3,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 DATABASE = 'database.db'
 
+def get_db_connection():
+    conn = sqlite3.connect('database.db')
+    conn.row_factory = sqlite3.Row
+    return conn
+
 def init_db():
     with sqlite3.connect(DATABASE) as conn:
         cursor = conn.cursor()

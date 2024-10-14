@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash
-from dbhelper import create_user, get_user, init_db
+from flask import Flask, render_template, request, redirect, url_for, session, flash , jsonify
+from dbhelper import *
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Change this to a random secret key
@@ -53,6 +53,14 @@ def dashboard():
 def logout():
     session.pop('username', None)
     return redirect(url_for('home'))
+
+
+@app.route('/data')
+def data():
+    conn = get_db_connection()
+    data = conn.execute('SELECT * FROM your_table_name').fetchall()
+    conn.close()
+    return jsonify([dict(row) for row in data])
 
 if __name__ == '__main__':
     app.run(debug=True)
