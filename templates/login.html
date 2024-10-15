@@ -7,7 +7,9 @@
     <title>Login</title>
 </head>
 <body>
-    <h1>Login</h1>
+
+    <div class="Login">
+    <h1>Welcome</h1>
     <form action="/login" method="POST">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
@@ -15,7 +17,7 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
         <br>
-        <button type="submit">Login</button>
+        <button id="submit" class="submit">Login</button>
     </form>
     {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -26,6 +28,8 @@
             </ul>
         {% endif %}
     {% endwith %}
-    <p>Don't have an account? <a href="/register">Create one here.</a></p>
+    <p class="register" style="font-size: 12px;">Don't have an account? <a href="/register"><span style="color: #0aa45f; font-size: 14px; text-decoration: underline; margin-left: 10px;">Create one here.</span>
+    </a></span></p>
+    </div>
 </body>
 </html>

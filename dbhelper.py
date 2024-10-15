@@ -1,4 +1,5 @@
 import sqlite3
+import os
 from werkzeug.security import generate_password_hash, check_password_hash
 
 DATABASE = 'database.db'
@@ -9,22 +10,23 @@ def get_db_connection():
     return conn
 
 def init_db():
-    with sqlite3.connect(DATABASE) as conn:
-        cursor = conn.cursor()
+    if not os.path.exists(DATABASE):
+        with sqlite3.connect(DATABASE) as conn:
+            cursor = conn.cursor()
 
-        # Creating 'users' table (already present)
-        cursor.execute('''CREATE TABLE IF NOT EXISTS users (
-                            id INTEGER PRIMARY KEY AUTOINCREMENT,
-                            username TEXT UNIQUE NOT NULL,
-                            password TEXT NOT NULL)''')
+            # Creating 'users' table (already present)
+            cursor.execute('''CREATE TABLE IF NOT EXISTS users (
+                                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                username TEXT UNIQUE NOT NULL,
+                                password TEXT NOT NULL)''')
 
-        # Creating 'your_table_name' table (or replace it with the actual name)
-        cursor.execute('''CREATE TABLE IF NOT EXISTS your_table_name (
-                            id INTEGER PRIMARY KEY AUTOINCREMENT,
-                            column1 TEXT,
-                            column2 TEXT)''')
+            # Creating 'your_table_name' table (or replace it with the actual name)
+            cursor.execute('''CREATE TABLE IF NOT EXISTS your_table_name (
+                                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                column1 TEXT,
+                                column2 TEXT)''')
 
-        conn.commit()
+            conn.commit()
 
 
 def create_user(username, password):

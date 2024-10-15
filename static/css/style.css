@@ -82,7 +82,7 @@ header .buttons a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 20rem;
+    margin-top: 23rem;
 }
 
 .text-content 
@@ -134,7 +134,7 @@ header .buttons a:hover {
     border-radius: 74% 26% 40% 60% / 63% 45% 55% 37% ;
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
     height: 500px;
-    
+    margin-top: -5rem;
 }
 
 footer p {
