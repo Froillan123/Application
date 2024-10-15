@@ -11,11 +11,21 @@ def get_db_connection():
 def init_db():
     with sqlite3.connect(DATABASE) as conn:
         cursor = conn.cursor()
+
+        # Creating 'users' table (already present)
         cursor.execute('''CREATE TABLE IF NOT EXISTS users (
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
                             username TEXT UNIQUE NOT NULL,
                             password TEXT NOT NULL)''')
+
+        # Creating 'your_table_name' table (or replace it with the actual name)
+        cursor.execute('''CREATE TABLE IF NOT EXISTS your_table_name (
+                            id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            column1 TEXT,
+                            column2 TEXT)''')
+
         conn.commit()
+
 
 def create_user(username, password):
     hashed_password = generate_password_hash(password)  # Hash the password

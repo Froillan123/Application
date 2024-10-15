@@ -60,7 +60,10 @@ def data():
     conn = get_db_connection()
     data = conn.execute('SELECT * FROM your_table_name').fetchall()
     conn.close()
-    return jsonify([dict(row) for row in data])
+    if data:
+        return jsonify([dict(row) for row in data])
+    else:
+        return jsonify([])  # Return an empty list if no data is found
 
 if __name__ == '__main__':
     app.run(debug=True)

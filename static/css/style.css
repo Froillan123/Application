@@ -1,0 +1,249 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+* 
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: "Poppins", sans-serif;
+}
+
+:root 
+{
+    --bg-color: #ffff;
+    --primary-color: #0aa45f;
+    --text-color: #333333;
+    --error-warning: #FF6B6B;
+}
+
+
+html
+{
+    font-size: 62.5%;
+}
+
+header 
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0.7rem 2%;
+    background: var(--bg-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+}
+
+header .logo h1 
+{
+    font-size: 2.5rem;
+    margin-left: 2rem;
+    font-weight: bold;
+}
+header .buttons 
+{
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+}
+
+header .buttons a 
+{
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    color: #333;
+    background-color: #d8e3d5;
+    transition: background-color 0.3s;
+}
+
+
+header .buttons a:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+
+
+.main-container 
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20rem;
+}
+
+.text-content 
+{
+    max-width: 50%;
+    padding-right: 20px;
+    padding: 50px;
+    margin-left: 5rem;
+    line-height: 1.5;
+}
+
+.text-content h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    color: #333;
+    margin-top: -150px;
+    margin-bottom: 5rem;
+}
+
+.text-content p {
+    font-size: 18px;
+    color: #444;
+}
+
+.watch-video-btn 
+{
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0aa45f;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+    margin-top: 5rem;
+}
+
+.watch-video-btn:hover {
+    background-color: #098a50;
+}
+
+.image-content {
+    max-width: 50%;
+    padding-right: 100px;
+}
+
+.image-content img {
+    width: 100%;
+    border: .5rem solid var(--main-color);
+    border-radius: 74% 26% 40% 60% / 63% 45% 55% 37% ;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
+    height: 500px;
+    
+}
+
+footer p {
+    margin: 0;
+}
+
+@media (max-width: 1252px) {
+    .main-container
+    {
+        flex-direction: column;
+        margin-top: 15rem;
+        min-height: auto; 
+        width: 100%;
+    }
+    .text-content 
+    {
+        max-width: 100%;
+        padding: 6rem 5%;
+    }
+    .text-content h1
+    {
+        font-size: 4rem;
+        margin-top: 0;
+    }
+    .text-content p 
+    {
+        font-size: 2rem;
+    }
+    .image-content 
+    {
+        max-width: 100%;
+    }
+    .image-content img
+    {
+        border-radius: 2px;
+    }
+}
+@media (max-width: 860px)
+{
+    .image-content img 
+    {
+        transform: translate(50px);
+    }
+}
+
+@media (max-width: 560px)
+{
+
+    header .logo h1 
+    {
+        font-size: 2.1rem;
+    }
+
+
+    header .buttons a 
+    {
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    color: #333;
+    background-color: #d8e3d5;
+    transition: background-color 0.3s;
+    }
+
+    .main-container
+    {
+        margin-top: 5rem;
+        padding: 2rem 1%;
+    }
+    .text-content
+    {
+        padding: 6rem 2%;
+        margin-left: 1rem;
+    }
+    .text-content h1
+    {
+        font-size: 3rem;
+    }
+    .text-content p 
+    {
+        font-size: 1.5rem;
+    }
+    .image-content img 
+    {
+        transform: translate(50px);
+        border: 5px solid var(--text-color);
+        box-shadow: none;
+    }
+    .watch-video-btn 
+    {
+        font-size: 1.5rem;
+       
+    }
+}
+
+@media (max-width: 460px)
+{
+    html 
+    {
+        font-size: 45%;
+    }
+    
+}
+
+@media (max-width: 377px)
+{
+    header .buttons 
+    {
+        gap: 1rem;
+    }
+}

@@ -3,80 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <title>Welcome to Lbud</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="shortcut icon" type="images/png" href="{{ url_for ('static', filename='images/png.png')}}">
+    <title>Care-Match</title>
 </head>
 <body>
-    <header>
-        <h1>Welcome to Lbud</h1>
-        <p>Your gateway to smart financial budgeting!</p>
-    </header>
-
-    <main>
-        <h2>Overview</h2>
-        <p>
-            Lbud is designed to help you manage your finances effectively. With features like budgeting tools, expense tracking, and financial literacy resources, you're on your way to better financial health!
-        </p>
-
+    <header class="nav">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/png.png') }}" alt="" width="75" height="auto">
+            <h1><span style="color: #0aa45f;">Care</span>-Match</h1>
+        </div>
         <div class="buttons">
             <a href="/login" class="button">Log In</a>
             <a href="/register" class="button">Sign Up</a>
         </div>
+    </header>
+
+    <main>
+        <section class="main-container">
+            <div class="text-content">
+                <h1>Welcome to Care-Match: Find Your Perfect Caregiver Anytime, Anywhere!</h1>
+                <p>At Care-Match, we understand that finding the right caregiver is essential for your loved ones' well-being. Our platform connects you with compassionate, qualified caregivers tailored to meet your unique needs. Whether you need assistance at home or specialized care, we're here to help you make the perfect match.</p>
+                <a href="#" class="watch-video-btn">Watch a video about us!</a>
+            </div>
+    
+            <div class="image-content">
+                <img src="{{ url_for('static', filename='images/mainpic.png') }}" alt="Caregiver and patient">
+            </div>
+
+        </section>
+
     </main>
 
-    <footer>
-        <p>&copy; 2024 Lbud. All rights reserved.</p>
-    </footer>
 
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
+    
 
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+    <!-- <footer>
+        <p>&copy; 2024 Care-Match. All rights reserved.</p>
+    </footer> -->
 
-        main {
-            padding: 20px;
-            text-align: center;
-        }
 
-        .buttons {
-            margin-top: 20px;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 10px;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        .button:hover {
-            background-color: #45a049;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #333;
-            color: white;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
 </body>
 <script>
     fetch('/data')
