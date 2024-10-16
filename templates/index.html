@@ -31,27 +31,17 @@
             </div>
     
             <div class="image-content">
-                <img src="{{ url_for('static', filename='images/mainpic.png') }}" alt="Caregiver and patient">
+                <!-- Hide this image on larger screens -->
+                <img src="{{ url_for('static', filename='images/mainpic.png') }}" alt="Caregiver and patient" class="hide-image">
             </div>
-
         </section>
-
-    </main>
-
-
     
-
+        <!-- Full-width image for screens <= 1252px -->
+        <img src="{{ url_for('static', filename='images/mainpic.png') }}" alt="Caregiver and patient" class="full-width-image">
+    </main>
+    
     <!-- <footer>
         <p>&copy; 2024 Care-Match. All rights reserved.</p>
     </footer> -->
-
-
 </body>
-<script>
-    fetch('/data')
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('data').innerText = JSON.stringify(data, null, 2);
-        });
-</script>
 </html>

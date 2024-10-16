@@ -15,19 +15,26 @@ html {
     font-size: 62.5%;
 }
 
-body 
-{
-    /* background-image: url('/static/images/blob-bg.png'); */
-    background-repeat: no-repeat;
-    background-size: cover; 
-    background-position: center; 
-    min-height: 100vh; 
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+
+:root {
+    --bg-color: #ffffff;
+    --primary-color: #0aa45f;
+    --text-color: #333333;
+    --error-warning: #FF6B6B;
 }
 
-.Login 
+body {
+    /* background-image: url('/static/images/blob-bg.png'); */
+    color: var(--text-color);
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container
 {
     background: rgba(255, 255, 255, 0.8); /* Optional: add a background for better visibility */
     padding: 2rem; /* Add some padding */
@@ -36,12 +43,16 @@ body
     width: 350px; /* Set a fixed width for the form */
     line-height: 2;
 }
-
 h1 
 {
     margin-bottom: 1rem; /* Space between title and form */
     text-align: center; /* Center the heading */
     font-size: 3rem;
+}
+
+.form-group {
+    width: 100%; /* Make form groups take full width */
+    margin-bottom: 15px; /* Space between form groups */
 }
 
 label 
@@ -67,7 +78,8 @@ input:focus {
     outline: none; /* Remove default outline */
 }
 
-button#submit {
+
+button {
     width: 100%; /* Full width for the button */
     border-radius: 1.5rem;
     font-size: 1.6rem;
@@ -84,15 +96,21 @@ button#submit:hover {
     background-color: #088a4f; /* Darker shade on hover */
 }
 
-ul {
+a {
     margin-top: 1rem; /* Space above messages */
-    color: red; /* Set color for error messages */
+    color: var(--primary-color);
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 p {
     text-align: center; /* Center the text */
-    margin-top: 2rem; /* Space above paragraph */
+    margin-top: 2.5rem; /* Space above paragraph */
+    font-size: 1.3rem;
 }
+
 
 @media (max-width: 792px) {
     body {
@@ -108,12 +126,9 @@ p {
         padding: 0; /* Reset paddings */
     }
 
-    .Login {
+    .container {
         margin: 20px; /* Add margin around the form */
         background: rgba(255, 255, 255, 0.9); /* Slightly more opaque for better visibility */
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Stronger shadow */
     }
 }
-
-
-

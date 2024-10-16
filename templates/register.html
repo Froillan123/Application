@@ -3,87 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/alertregister.css') }}">
     <title>Register</title>
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-
-        h1 {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        form {
-            width: 300px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        .error {
-            color: red;
-            text-align: center;
-            margin-top: 10px;
-        }
-    </style>
 </head>
 <body>
-    <h1>Register</h1>
 
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <div class="error">
-                {% for message in messages %}
-                    <p>{{ message }}</p>
-                {% endfor %}
+    <div class="alert-messageRegister" style="display: none;">
+        <div class="error-messagesRegister">
+            <ul>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li> <!-- Add class based on category -->
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
+            </ul>
+            <button class="alert-ok-buttonRegister">OK</button> <!-- OK button to reset the form -->
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Register</h1>
+        <form id="register-form" action="/register" method="POST">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
             </div>
-        {% endif %}
-    {% endwith %}
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="/login"><span style="color: #0aa45f; font-size: 14px; text-decoration: underline; margin-left: 10px;">Login here.</span></a></p>
+    </div>
 
-    <form action="/register" method="POST">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <br>
-        <button type="submit">Register</button>
-    </form>
-    <p><a href="/login">Already have an account? Login here.</a></p>
+    <<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const alertMessages = document.querySelector('.alert-messageRegister');
+            const alertOkButton = document.querySelector('.alert-ok-buttonRegister');
+            const registerForm = document.getElementById('register-form');
+
+            // Get the messages from the Flask session
+            const messages = {{ get_flashed_messages() | tojson | safe }};
+            
+            if (Array.isArray(messages) && messages.length > 0) {
+                alertMessages.style.display = 'flex'; // Show the alert if there are messages
+            }
+
+            // Hide alert and reset the form on clicking the OK button
+            alertOkButton.addEventListener('click', function() {
+                alertMessages.style.display = 'none'; // Hide the alert
+                registerForm.reset(); // Reset the form fields
+            });
+        });
+    </script>
+    
 </body>
 </html>

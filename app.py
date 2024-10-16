@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash , jsonify
+from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
 from dbhelper import *
 
 app = Flask(__name__)
@@ -14,15 +14,15 @@ def home():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form['username'].strip()  # Remove whitespace
-        password = request.form['password'].strip()  # Remove whitespace
+        username = request.form['username'].strip()
+        password = request.form['password'].strip()
         
         user = get_user(username, password)
         if user:
             session['username'] = username
             return redirect(url_for('dashboard'))
         else:
-            flash('Invalid credentials!')
+            flash('Invalid credentials! Please try again.')
             return redirect(url_for('login'))
     
     return render_template('login.html')
@@ -33,14 +33,17 @@ def register():
         username = request.form['username'].strip()  # Remove whitespace
         password = request.form['password'].strip()  # Remove whitespace
         
-        if create_user(username, password):
-            flash('User registered successfully!')
-            return redirect(url_for('login'))
+        # Attempt to create a user
+        if create_user(username, password):  # Assume create_user returns True on success
+            flash('User registered successfully!', 'success')  # Success category
+            return redirect(url_for('login'))  # Redirect to login
         else:
-            flash('Username already exists! Please choose another one.')
-            return redirect(url_for('register'))
+            flash('Username already exists! Please choose another one.', 'error')  # Error category
 
+    # Render the registration template with flashed messages
     return render_template('register.html')
+
+
 
 
 @app.route('/dashboard')
@@ -54,7 +57,6 @@ def logout():
     session.pop('username', None)
     return redirect(url_for('home'))
 
-
 @app.route('/data')
 def data():
     conn = get_db_connection()
@@ -67,4 +69,3 @@ def data():
 
 if __name__ == '__main__':
     app.run(debug=True)
-    
