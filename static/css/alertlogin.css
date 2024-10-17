@@ -19,7 +19,7 @@
     align-items: center; /* Center content horizontally */
     padding: 15px;
     background-color: #fff; /* White background */
-    color: red; /* Red text color */
+    color: #333; /* Red text color */
     border-radius: 8px; /* Rounded corners */
     width: 350px; /* Fixed width */
     height: 150px; /* Fixed height */

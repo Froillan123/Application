@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/alertregister.css') }}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Register</title>
+
 </head>
 <body>
 
@@ -15,12 +17,17 @@
                 {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                     {% for category, message in messages %}
-                        <li class="{{ category }}">{{ message }}</li> <!-- Add class based on category -->
+                        <li class="{{ category }}">
+                            {% if category == 'error' %}
+                                <i class="bx bx-error-circle" style="color: red; margin-right: 5px;"></i>
+                            {% endif %}
+                            {{ message }}
+                        </li>
                     {% endfor %}
                 {% endif %}
                 {% endwith %}
-            </ul>
-            <button class="alert-ok-buttonRegister">OK</button> <!-- OK button to reset the form -->
+            </ul>            
+            <button class="alert-ok-buttonRegister">OK</button>
         </div>
     </div>
 

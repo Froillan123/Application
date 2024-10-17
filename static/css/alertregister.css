@@ -12,14 +12,15 @@
     margin: 0; /* Remove default margin */
 }
 
-.error-messagesRegister {
+.error-messagesRegister
+{
     display: flex; /* Use flexbox for content alignment */
     flex-direction: column; /* Arrange children in a column */
     justify-content: center; /* Center content vertically */
     align-items: center; /* Center content horizontally */
     padding: 15px;
     background-color: #fff; /* White background */
-    color: red; /* Red text color */
+    color: #333;
     border-radius: 8px; /* Rounded corners */
     width: 350px; /* Fixed width */
     height: 150px; /* Fixed height */
@@ -28,16 +29,22 @@
 }
 
 .error-messagesRegister ul {
-    padding: 0; /* Remove default padding */
-    margin: 0; /* Remove default margin */
-    width: 100%; /* Ensure full width for the list */
+    padding: 0; 
+    margin: 0; 
+    width: 100%; 
 }
 
 .error-messagesRegister ul li {
-    list-style-type: none; /* Remove bullet points */
-    margin: 10px 0; /* Add some spacing between messages */
-    font-size: 1.6rem; /* Font size for messages */
+    list-style-type: none; 
+    margin: 10px 0; 
+    font-size: 1.6rem; 
 }
+    
+
+.error-messagesRegister ul li.success {
+    color: green !important; /* Ensure success messages are green */
+}
+
 
 .alert-ok-buttonRegister {
     margin-top: 2rem;

@@ -24,7 +24,7 @@ html {
 }
 
 body {
-    /* background-image: url('/static/images/blob-bg.png'); */
+
     color: var(--text-color);
     font-family: Arial, sans-serif;
     display: flex;

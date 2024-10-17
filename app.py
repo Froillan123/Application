@@ -35,14 +35,14 @@ def register():
         
         # Attempt to create a user
         if create_user(username, password):  # Assume create_user returns True on success
-            flash('User registered successfully!', 'success')  # Success category
-            return redirect(url_for('login'))  # Redirect to login
+            flash('User registered successfully! You can now log in.', 'success')  # Success category
+            return redirect(url_for('login'))  # Redirect to login page after successful registration
         else:
             flash('Username already exists! Please choose another one.', 'error')  # Error category
+            return render_template('register.html')  # Stay on the registration page
 
     # Render the registration template with flashed messages
     return render_template('register.html')
-
 
 
 
